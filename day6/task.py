@@ -11,28 +11,27 @@ def parse_input() -> List[int]:
 
 def model(days: int) -> Dict[int, int]:
     state = dict.fromkeys(range(9), 0)
+
     initial_state = parse_input()
     for day in initial_state:
         state[day] += 1
+
     for _ in range(days):
-        new_kids = 0
-        for i in range(9):
-            if i == 0:
-                new_kids = state[i]
-            else:
-                state[i - 1] += state[i]
-            state[i] = 0
-        state[8] += new_kids
+        new_kids = state[0]
+        for i in range(1, 9):
+            state[i - 1] = state[i]
+        state[8] = new_kids
         state[6] += new_kids
+
     return state
 
 
-def part_one():
+def part_one() -> int:
     state = model(80)
     return sum(state.values())
 
 
-def part_two():
+def part_two() -> int:
     state = model(256)
     return sum(state.values())
 
