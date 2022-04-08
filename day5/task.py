@@ -8,7 +8,7 @@ Segment = namedtuple('Segment', ['p1', 'p2'])
 
 def parse_input() -> List[Segment]:
     input_segments = []
-    with open('data.txt', 'r') as f:
+    with open('tmp-data.txt', 'r') as f:
         for line in f.readlines():
             segment_tokens = line.split(' -> ')
             p1_tokens = segment_tokens[0].split(',')
